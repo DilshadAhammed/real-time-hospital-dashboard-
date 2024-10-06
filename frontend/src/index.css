@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.wash-btn{
+    width: 90px;
+    height: 90px;
+    /* background-color: red; */
+    border-radius: 10px;
+}
