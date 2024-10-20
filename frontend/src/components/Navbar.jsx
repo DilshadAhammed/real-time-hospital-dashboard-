@@ -29,16 +29,10 @@ export default function Navbar() {
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-          <Link to="/login">Login</Link> <span aria-hidden="true">&rarr;</span>
-          </a>
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end space-x-2">
+          <Link to="/login" className="bg-white text-black font-semibold py-2 px-4 border border-gray-400 rounded shadow hover:bg-gray-100">Login</Link>
+          <Link to="/register" className="bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow hover:bg-blue-700">Register</Link>
         </div>
-        <button
-          className="hidden lg:flex  py-1.5 px-4 transition-colors bg-gray-50 border active:bg-blue-800 font-medium border-gray-200 hover:text-white text-blue-600 hover:border-blue-700 rounded-lg hover:bg-blue-600 disabled:opacity-50"
-        >
-          <Link to="/register">Register</Link>
-        </button>
       </nav>
       <Dialog
         open={mobileMenuOpen}
@@ -70,13 +64,10 @@ export default function Navbar() {
                 >
                   Log in
                 </a>
-                <button
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    <Link to="/register">Register</Link>
+                <button className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                  <Link to="/register">Register</Link>
                 </button>
               </div>
-              
             </div>
           </div>
         </DialogPanel>

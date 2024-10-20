@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import Navbar from "./Navbar"
+
 function RegisterPage() {
   const idukki = {
     Municipality: [{ name: "Thodupuzha" }, { name: "Kattappana" }],
@@ -59,7 +61,7 @@ function RegisterPage() {
       { name: "Velliyamattom" },
     ],
   };
-  const [selectedType, setSelectedType] = useState(''); 
+  const [selectedType, setSelectedType] = useState("");
   const [localBodies, setLocalBodies] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -110,7 +112,6 @@ function RegisterPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleTypeChange = (event) => {
-    
     const selected = event.target.value;
     setSelectedType(selected);
     setLocalBodies(idukki[selected] || []);
@@ -143,44 +144,46 @@ function RegisterPage() {
   };
 
   return (
-    <div className="bg-gray-50 flex max-w-full items-center justify-center h-screen">
-      <div className="max-w-2xl mx-auto text-center">
-        <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
-          Register
-        </h2>
-        <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600">
-          Please Enter Your Details
-        </p>
-      </div>
-      <div className="w-full max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex space-x-4">
-            <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-700">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Name"
-              />
-            </div>
-            <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-700">
-                District
-              </label>
-              <select
-                name="district"
-                value={formData.district}
-                onChange={handleChange}
-                required
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              >
-                <option value="Idukki">Idukki</option>
-                {/* <option value="Alappuzha">Alappuzha</option>
+    <>
+      <Navbar />
+      <div className="bg-gray-50 flex max-w-full items-center justify-center h-screen">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
+            Register
+          </h2>
+          <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600">
+            Please Enter Your Details
+          </p>
+        </div>
+        <div className="w-full max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="flex space-x-4">
+              <div className="w-1/2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Name"
+                />
+              </div>
+              <div className="w-1/2">
+                <label className="block text-sm font-medium text-gray-700">
+                  District
+                </label>
+                <select
+                  name="district"
+                  value={formData.district}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                >
+                  <option value="Idukki">Idukki</option>
+                  {/* <option value="Alappuzha">Alappuzha</option>
                 <option value="Ernakulam">Ernakulam</option>
                 
                 <option value="Kannur">Kannur</option>
@@ -194,158 +197,166 @@ function RegisterPage() {
                 <option value="Thiruvananthapuram">Thiruvananthapuram</option>
                 <option value="Thrissur">Thrissur</option>
                 <option value="Wayanad">Wayanad</option> */}
-              </select>
+                </select>
+              </div>
             </div>
-          </div>
-          <div className="flex space-x-4">
-            <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-700">
-                Address
-              </label>
-              <input
-                type="text"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Address"
-              />
+            <div className="flex space-x-4">
+              <div className="w-1/2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Address
+                </label>
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Address"
+                />
+              </div>
+              <div className="w-1/2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Type of Local Body
+                </label>
+                <select
+                  name="localBodyType"
+                  value={selectedType}
+                  onChange={handleTypeChange}
+                  required
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                >
+                  <option value="">Select Local Body Type</option>
+                  <option value="Municipality">Municipality</option>
+                  <option value="Corporation">Corporation</option>
+                  <option value="GramPanchayat">Panchayath</option>
+                </select>
+              </div>
             </div>
-            <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-700">
-                Type of Local Body
+            <div className="flex space-x-4">
+              <div className="w-1/2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Name of Local Body
+                </label>
+                <select
+                  name="localBodyName"
+                  value={formData.localBodyName}
+                  onChange={handleChange}
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                >
+                  {localBodies.map((body, index) => (
+                    <option
+                      size="15"
+                      key={index}
+                      value={body.name}
+                      className="bg-slate-800 text-white "
+                    >
+                      {body.name}
+                    </option>
+                  ))}
+                  ;
+                </select>
+              </div>
+              <div className="w-1/2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Email"
+                />
+              </div>
+            </div>
+            <div className="flex space-x-4">
+              <div className="w-2/3">
+                <label className="block text-sm font-medium text-gray-700">
+                  Mobile Number
+                </label>
+                <input
+                  type="text"
+                  name="mobile"
+                  value={formData.mobile}
+                  onChange={handleChange}
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Mobile Number"
+                />
+                {/* <button className="mt-1 absolute text-sm p-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Verify</button> */}
+              </div>
+              <div className="w-1/4">
+                <button className="absolute mt-6 p-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+                  Verify
+                </button>
+              </div>
+              <div className="w-1/3">
+                <label className="block text-sm font-medium text-gray-700">
+                  OTP
+                </label>
+                <input
+                  type="text"
+                  name="otp"
+                  value={formData.otp}
+                  onChange={handleChange}
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Enter OTP"
+                />
+              </div>
+            </div>
+            <div className="flex space-x-4">
+              <div className="w-1/2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="pass"
+                  value={formData.pass}
+                  onChange={handleChange}
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Enter Your Password"
+                />
+              </div>
+              <div className="w-1/2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  name="c_pass"
+                  value={formData.c_pass}
+                  onChange={handleChange}
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Confirm Your Password"
+                />
+              </div>
+            </div>
+            <div className="flex items-center">
+              <label className="ml-2 block text-sm text-gray-700">
+                Already a member{" "}
+                <Link
+                  to="/login"
+                  className="text-indigo-600 hover:text-indigo-500"
+                >
+                  Login
+                </Link>
+                .
               </label>
-              <select
-                name="localBodyType"
-                value={selectedType}
-                onChange={handleTypeChange}
-                required
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
               >
-                <option value="">Select Local Body Type</option>
-                <option value="Municipality">Municipality</option>
-                <option value="Corporation">Corporation</option>
-                <option value="GramPanchayat">Panchayath</option>
-              </select>
-            </div>
-          </div>
-          <div className="flex space-x-4">
-            <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-700">
-                Name of Local Body
-              </label>
-              <select
-                name="localBodyName"
-                value={formData.localBodyName}
-                onChange={handleChange}
-                
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              >
-                {localBodies.map((body, index) =>(
-                  <option  size="15" key={index} value={body.name} className="bg-slate-800 text-white ">{body.name}</option>
-                ))};
-              </select>
-            </div>
-            <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Email"
-              />
-            </div>
-          </div>
-          <div className="flex space-x-4">
-            <div className="w-2/3">
-              <label className="block text-sm font-medium text-gray-700">
-                Mobile Number
-              </label>
-              <input
-                type="text"
-                name="mobile"
-                value={formData.mobile}
-                onChange={handleChange}
-                className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Mobile Number"
-              />
-              {/* <button className="mt-1 absolute text-sm p-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Verify</button> */}
-            </div>
-            <div className="w-1/4">
-              <button className="absolute mt-6 p-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
-                Verify
+                Submit
               </button>
             </div>
-            <div className="w-1/3">
-              <label className="block text-sm font-medium text-gray-700">
-                OTP
-              </label>
-              <input
-                type="text"
-                name="otp"
-                value={formData.otp}
-                onChange={handleChange}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Enter OTP"
-              />
-            </div>
-          </div>
-          <div className="flex space-x-4">
-            <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <input
-                type="password"
-                name="pass"
-                value={formData.pass}
-                onChange={handleChange}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Enter Your Password"
-              />
-            </div>
-            <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-700">
-                Confirm Password
-              </label>
-              <input
-                type="password"
-                name="c_pass"
-                value={formData.c_pass}
-                onChange={handleChange}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Confirm Your Password"
-              />
-            </div>
-          </div>
-          <div className="flex items-center">
-            <label className="ml-2 block text-sm text-gray-700">
-              Already a member{" "}
-              <Link
-                to="/login"
-                className="text-indigo-600 hover:text-indigo-500"
-              >
-                Login
-              </Link>
-              .
-            </label>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
