@@ -20,6 +20,50 @@ router.get('/', doctorAuth, async (req, res) => {
   }
 });
 
+router.put("/emergencyOverride", async (req, res) => {
+  const { doctorId, emergencyOverride } = req.body;
+  try {
+    const doctor = await Doctor.findByIdAndUpdate(
+      doctorId,
+      { emergencyOverride },
+      { new: true }
+    );
+    res.json(doctor);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update emergency override" });
+  }
+});
+
+router.put("/updateRecurringAvailability", async (req, res) => {
+  const { doctorId, recurringAvailability } = req.body;
+  try {
+    const doctor = await Doctor.findByIdAndUpdate(
+      doctorId,
+      { recurringAvailability },
+      { new: true }
+    );
+    res.json(doctor);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update recurring availability" });
+  }
+});
+
+
+// route to update availability slots
+router.put("/updateAvailabilitySlots", async (req, res) => {
+  const { doctorId, availabilitySlots } = req.body;
+  try {
+    const doctor = await Doctor.findByIdAndUpdate(
+      doctorId,
+      { availabilitySlots },
+      { new: true }
+    );
+    res.json(doctor);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update availability" });
+  }
+});
+
 // Update doctor availability status by doctor
 router.put('/updateAvailability', doctorAuth, async (req, res) => {
   const { availability } = req.body;

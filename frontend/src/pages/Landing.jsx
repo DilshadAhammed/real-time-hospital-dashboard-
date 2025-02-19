@@ -27,7 +27,7 @@ function Landing() {
             <h2 className="text-5xl font-serif">Empowering</h2>
             <h2 className="text-5xl font-serif">lives through</h2>
             <h2 className="text-5xl font-serif ">Health care</h2>
-            <div className="absolute mt-10">
+            <div className="mt-10">
               <p className="font-mono w-3/4">
                 How can we assist you today? Please select the following option
                 !

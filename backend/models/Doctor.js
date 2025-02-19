@@ -27,10 +27,36 @@ const doctorSchema = new mongoose.Schema({
         ref: 'Hospital',
         required: true
     },
+
+    // OLD Field (Keep this for existing modules)
     availability: {
         type: Boolean,
-        default: false // Set default availability to false
+        default: false // Simple available/unavailable toggle
     },
+
+    // NEW Features (For Scheduled Availability)
+    availabilitySlots: [
+        {
+            date: { type: String, required: true }, // YYYY-MM-DD
+            startTime: { type: String, required: true }, // HH:MM
+            endTime: { type: String, required: true }
+        }
+    ],
+
+    recurringAvailability: [
+        {
+            day: { type: String, required: true }, // e.g., "Monday"
+            startTime: { type: String, required: true },
+            endTime: { type: String, required: true }
+        }
+    ],
+
+    emergencyOverride: {
+        type: Boolean,
+        default: false // If doctor suddenly becomes unavailable
+    },
+
+
     role: { type: String, default: 'doctor' }
 });
 
